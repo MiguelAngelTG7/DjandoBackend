@@ -1,6 +1,6 @@
 # Notes App
 
-Una aplicación web que permite a los usuarios autenticados crear, leer, actualizar y eliminar notas. Esta aplicación utiliza un backend construido en Django REST Framework y un frontend en React para proporcionar una experiencia de usuario intuitiva. ABC
+Una aplicación web que permite a los usuarios autenticados crear, leer, actualizar y eliminar notas. Esta aplicación utiliza un backend construido en Django REST Framework y un frontend en React para proporcionar una experiencia de usuario intuitiva.
 
 ---
 
