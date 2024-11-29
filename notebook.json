@@ -337,7 +337,7 @@
         },
         "username": {
           "title": "Username",
-          "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+          "description": "Required.",
           "type": "string",
           "pattern": "^[\\w.@+-]+$",
           "maxLength": 150,
