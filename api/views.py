@@ -10,6 +10,8 @@ class NoteListCreate(generics.ListCreateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):  # Detecta la generación del esquema
+            return Note.objects.none()  # Devuelve un queryset vacío para evitar errores
         user = self.request.user
         return Note.objects.filter(author=user)
 
@@ -24,6 +26,8 @@ class NoteUpdate(generics.UpdateAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):  # Detecta la generación del esquema
+            return Note.objects.none()  # Devuelve un queryset vacío para evitar errores
         user = self.request.user
         return Note.objects.filter(author=user)
 
@@ -32,6 +36,8 @@ class NoteDelete(generics.DestroyAPIView):
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
+        if getattr(self, 'swagger_fake_view', False):  # Detecta la generación del esquema
+            return Note.objects.none()  # Devuelve un queryset vacío para evitar errores
         user = self.request.user
         return Note.objects.filter(author=user)
 

@@ -1,340 +1,353 @@
 {
-  "openapi": "3.0.0",
+  "swagger": "2.0",
   "info": {
-    "title": "Notebook API",
-    "description": "API para gestionar notas, autenticación y usuarios.",
-    "termsOfService": "https://www.google.com/policies/terms/",
-    "contact": {
-      "email": "contact@snippets.local"
-    },
-    "license": {
-      "name": "BSD License"
-    },
-    "version": "1.0.0"
+    "title": "DRF Boilerplate",
+    "description": "Documentación de las APIs de Boilerplate",
+    "version": "0.1"
   },
-  "servers": [
+  "host": "127.0.0.1:8000",
+  "schemes": [
+    "http"
+  ],
+  "basePath": "/api",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "securityDefinitions": {
+    "Basic": {
+      "type": "basic"
+    }
+  },
+  "security": [
     {
-      "url": "http://127.0.0.1:8000/api",
-      "description": "Servidor local de desarrollo"
+      "Basic": []
     }
   ],
   "paths": {
     "/notes/": {
       "get": {
-        "summary": "Obtener lista de notas",
-        "description": "Devuelve una lista de todas las notas disponibles.",
+        "operationId": "notes_list",
+        "description": "",
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "Lista de notas obtenida con éxito.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/Note"
-                  }
-                }
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Note"
               }
             }
           }
         },
-        "tags": ["notes"]
+        "tags": [
+          "notes"
+        ]
       },
       "post": {
-        "summary": "Crear nueva nota",
-        "description": "Crea una nueva nota con los datos proporcionados.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Note"
-              }
+        "operationId": "notes_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Note"
             }
           }
-        },
+        ],
         "responses": {
           "201": {
-            "description": "Nota creada con éxito.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Note"
-                }
-              }
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Note"
             }
           }
         },
-        "tags": ["notes"]
-      }
+        "tags": [
+          "notes"
+        ]
+      },
+      "parameters": []
     },
     "/notes/delete/{id}/": {
       "delete": {
-        "summary": "Eliminar una nota",
-        "description": "Elimina una nota específica mediante su ID.",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "description": "ID de la nota a eliminar.",
-            "schema": {
-              "type": "integer"
-            }
-          }
-        ],
+        "operationId": "notes_delete_delete",
+        "description": "",
+        "parameters": [],
         "responses": {
           "204": {
-            "description": "Nota eliminada con éxito."
+            "description": ""
           }
         },
-        "tags": ["notes"]
-      }
+        "tags": [
+          "notes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
     },
     "/notes/update/{id}/": {
       "put": {
-        "summary": "Actualizar una nota",
-        "description": "Actualiza completamente una nota existente mediante su ID.",
+        "operationId": "notes_update_update",
+        "description": "",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "name": "data",
+            "in": "body",
             "required": true,
-            "description": "ID de la nota a actualizar.",
             "schema": {
-              "type": "integer"
+              "$ref": "#/definitions/Note"
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Note"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Nota actualizada con éxito.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Note"
-                }
-              }
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Note"
             }
           }
         },
-        "tags": ["notes"]
+        "tags": [
+          "notes"
+        ]
       },
       "patch": {
-        "summary": "Actualizar parcialmente una nota",
-        "description": "Actualiza parcialmente los campos de una nota existente mediante su ID.",
+        "operationId": "notes_update_partial_update",
+        "description": "",
         "parameters": [
           {
-            "name": "id",
-            "in": "path",
+            "name": "data",
+            "in": "body",
             "required": true,
-            "description": "ID de la nota a actualizar.",
             "schema": {
-              "type": "integer"
+              "$ref": "#/definitions/Note"
             }
           }
         ],
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/Note"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
-            "description": "Nota actualizada parcialmente con éxito.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Note"
-                }
-              }
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/Note"
             }
           }
         },
-        "tags": ["notes"]
-      }
+        "tags": [
+          "notes"
+        ]
+      },
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
     },
     "/token/": {
       "post": {
-        "summary": "Obtener token JWT",
-        "description": "Obtiene un par de tokens de acceso y refresco proporcionando credenciales de usuario.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TokenObtainPair"
-              }
+        "operationId": "token_create",
+        "description": "Takes a set of user credentials and returns an access and refresh JSON web\ntoken pair to prove the authentication of those credentials.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
             }
           }
-        },
+        ],
         "responses": {
-          "200": {
-            "description": "Tokens obtenidos con éxito.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenObtainPair"
-                }
-              }
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenObtainPair"
             }
           }
         },
-        "tags": ["token"]
-      }
+        "tags": [
+          "token"
+        ]
+      },
+      "parameters": []
     },
     "/token/refresh/": {
       "post": {
-        "summary": "Refrescar token JWT",
-        "description": "Genera un nuevo token de acceso utilizando un token de refresco válido.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TokenRefresh"
-              }
+        "operationId": "token_refresh_create",
+        "description": "Takes a refresh type JSON web token and returns an access type JSON web\ntoken if the refresh token is valid.",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
             }
           }
-        },
+        ],
         "responses": {
-          "200": {
-            "description": "Token refrescado con éxito.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenRefresh"
-                }
-              }
+          "201": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/TokenRefresh"
             }
           }
         },
-        "tags": ["token"]
-      }
+        "tags": [
+          "token"
+        ]
+      },
+      "parameters": []
     },
     "/user/register/": {
       "post": {
-        "summary": "Registrar un usuario",
-        "description": "Crea un nuevo usuario proporcionando los datos requeridos.",
-        "requestBody": {
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/User"
-              }
+        "operationId": "user_register_create",
+        "description": "",
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
-        },
+        ],
         "responses": {
           "201": {
-            "description": "Usuario registrado con éxito.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/User"
-                }
-              }
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
             }
           }
         },
-        "tags": ["user"]
-      }
+        "tags": [
+          "user"
+        ]
+      },
+      "parameters": []
     }
   },
-  "components": {
-    "schemas": {
-      "Note": {
-        "required": ["title", "content"],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "title": {
-            "type": "string",
-            "description": "Título de la nota.",
-            "maxLength": 100
-          },
-          "content": {
-            "type": "string",
-            "description": "Contenido de la nota."
-          },
-          "created_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "updated_at": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          }
+  "definitions": {
+    "Note": {
+      "required": [
+        "title",
+        "content"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "title": {
+          "title": "Title",
+          "type": "string",
+          "maxLength": 100,
+          "minLength": 1
+        },
+        "content": {
+          "title": "Content",
+          "type": "string",
+          "minLength": 1
+        },
+        "created_at": {
+          "title": "Created at",
+          "type": "string",
+          "format": "date-time",
+          "readOnly": true
+        },
+        "updated_at": {
+          "title": "Updated at",
+          "type": "string",
+          "format": "date",
+          "readOnly": true
+        },
+        "author": {
+          "title": "Author",
+          "type": "integer",
+          "readOnly": true
         }
-      },
-      "TokenObtainPair": {
-        "required": ["username", "password"],
-        "type": "object",
-        "properties": {
-          "username": {
-            "type": "string",
-            "description": "Nombre de usuario."
-          },
-          "password": {
-            "type": "string",
-            "description": "Contraseña."
-          }
+      }
+    },
+    "TokenObtainPair": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "username": {
+          "title": "Username",
+          "type": "string",
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "minLength": 1
         }
-      },
-      "TokenRefresh": {
-        "required": ["refresh"],
-        "type": "object",
-        "properties": {
-          "refresh": {
-            "type": "string",
-            "description": "Token de refresco."
-          },
-          "access": {
-            "type": "string",
-            "readOnly": true,
-            "description": "Nuevo token de acceso."
-          }
+      }
+    },
+    "TokenRefresh": {
+      "required": [
+        "refresh"
+      ],
+      "type": "object",
+      "properties": {
+        "refresh": {
+          "title": "Refresh",
+          "type": "string",
+          "minLength": 1
+        },
+        "access": {
+          "title": "Access",
+          "type": "string",
+          "readOnly": true,
+          "minLength": 1
         }
-      },
-      "User": {
-        "required": ["username", "password"],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "readOnly": true
-          },
-          "username": {
-            "type": "string",
-            "description": "Nombre de usuario.",
-            "maxLength": 150
-          },
-          "password": {
-            "type": "string",
-            "description": "Contraseña.",
-            "maxLength": 128
-          }
+      }
+    },
+    "User": {
+      "required": [
+        "username",
+        "password"
+      ],
+      "type": "object",
+      "properties": {
+        "id": {
+          "title": "ID",
+          "type": "integer",
+          "readOnly": true
+        },
+        "username": {
+          "title": "Username",
+          "description": "Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.",
+          "type": "string",
+          "pattern": "^[\\w.@+-]+$",
+          "maxLength": 150,
+          "minLength": 1
+        },
+        "password": {
+          "title": "Password",
+          "type": "string",
+          "maxLength": 128,
+          "minLength": 1
         }
       }
     }

@@ -30,7 +30,7 @@ SECRET_KEY = 'django-insecure-v7a$1iav(45e87x&u694@#2r-k)8z*_bz6mx77cq)#c#m6d^eu
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
@@ -55,6 +55,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
+    'webpack_loader',
     'api',
     'rest_framework',
     'corsheaders',
@@ -101,7 +103,8 @@ DATABASES = {
         'NAME': 'notebook',
         'USER': 'postgres',
         'PASSWORD': 'root',
-        'PORT': 5432
+        'DB_HOST': '127.0.0.1',
+        'PORT': '5432'
     }
 }
 
@@ -140,7 +143,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+#STATIC_URL = 'static/'
+STATIC_URL = '/static/'  # URL base para servir archivos estáticos
+STATIC_ROOT = BASE_DIR / 'staticfiles'  # Carpeta donde se recopilarán los archivos estáticos
+#STATICFILES_DIRS = [BASE_DIR / 'static']
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
