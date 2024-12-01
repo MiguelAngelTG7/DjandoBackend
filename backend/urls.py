@@ -5,8 +5,13 @@ from django.conf.urls.static import static
 from backend.openapi import view_swagger
 from api.views import CreateUserView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from django.http import JsonResponse
+
+def home_view(request):
+    return JsonResponse({"message": "Welcome to the Notebook API"})
 
 urlpatterns = [
+    path('', home_view),  # Página de inicio para la raíz
     path("admin/", admin.site.urls),
     path('swagger-ui/', view_swagger.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
     path("api/user/register/", CreateUserView.as_view(), name="register"),
