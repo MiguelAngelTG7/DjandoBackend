@@ -5,10 +5,55 @@ from django.conf.urls.static import static
 from backend.openapi import view_swagger
 from api.views import CreateUserView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from django.http import JsonResponse
+from django.http import HttpResponse
+from django.shortcuts import render
 
 def home_view(request):
-    return JsonResponse({"message": "Welcome to the Notebook API"})
+    # Crear un mensaje de bienvenida HTML
+    html_content = """
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Welcome to Notebook API</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f4f4f9;
+                color: #333;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                text-align: center;
+            }
+            .container {
+                background-color: white;
+                padding: 40px;
+                border-radius: 8px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+            h1 {
+                font-size: 2.5em;
+                color: #4CAF50;
+            }
+            p {
+                font-size: 1.2em;
+                margin-top: 20px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>Bienvenido a la API de Notebook</h1>
+            <p>Nos alegra que estes aqui! Estas listo para Acceder a tus Notas?</p>
+        </div>
+    </body>
+    </html>
+    """
+    return HttpResponse(html_content)
 
 urlpatterns = [
     path('', home_view),  # Página de inicio para la raíz
