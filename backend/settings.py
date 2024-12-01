@@ -41,11 +41,6 @@ REST_FRAMEWORK = {
     ],
 }
 
-SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
-}
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -143,7 +138,6 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-#STATIC_URL = 'static/'
 STATIC_URL = '/static/'  # URL base para servir archivos estáticos
 STATIC_ROOT = BASE_DIR / 'staticfiles'  # Carpeta donde se recopilarán los archivos estáticos
 #STATICFILES_DIRS = [BASE_DIR / 'static']
@@ -155,3 +149,19 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWS_CREDENTIALS = True
+
+SWAGGER_SETTINGS = {
+    'USE_SESSION_AUTH': False,
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'in': 'header',
+            'name': 'Authorization'
+        }
+    }
+}
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+}
